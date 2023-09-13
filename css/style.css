@@ -1,0 +1,26 @@
+.app {
+    width: 50%;
+    height: 300px;
+
+    /* 최소, 최대너비 */
+    min-width: 500px;
+    max-width: 800px;
+
+    border: 1px black solid;
+    padding: 10px; 
+    /* 각각 시계 방향으로 10px 씩 top, right, bottom, left 순서 */    
+
+
+    /* 너비와 높이의 기준을 어떻게 잡을까에 관한 속성 */
+    box-sizing: border-box ;
+}
+
+
+/* 
+css 레이아웃 - 포지션
+static : 기본값으로 고정을 의미
+relatcive : 기본 위치에 상대적으로 이동
+absolute : relatcive속성을 가진 가장 가까운 부모 태그 기준으로 이동
+fixed : 뷰포트 화면을 기준으로 이동
+sticky : 스크롤시에도 static 위치 고정
+*/
