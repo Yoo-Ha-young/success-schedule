@@ -102,3 +102,14 @@ header {
 .dropdown:hover .dropdown-content{
     display: block;
 }
+
+.blue {
+    color: var(--main-blue);
+}
+
+
+@media only all and (max-width: 400px) {
+    html {
+        font-size: 8px;
+    }
+}
