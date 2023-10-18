@@ -5,9 +5,9 @@ const { jwtMiddleware } = require("../../jwtMiddleware")
 exports.indexRouter = function(app) {
     // 일정 CRUD API
     app.post("/todo", jwtMiddleware, indexController.createTodo); // create
-    app.get("/user/:userIdx/todos", indexController.readTodo); // read
-    app.patch("/todo", indexController.updateTodo) // update
-    app.delete("/user/:userIdx/todo/:todoIdx", indexController.deleteTodo) // delete
+    app.get("/todos", jwtMiddleware, indexController.readTodo); // read
+    app.patch("/todo", jwtMiddleware, indexController.updateTodo) // update
+    app.delete("/todo/:todoIdx",jwtMiddleware, indexController.deleteTodo) // delete
 
     app.get(
         "/dummy",

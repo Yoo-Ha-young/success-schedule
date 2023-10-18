@@ -1,7 +1,8 @@
 const indexDao = require("../dao/indexDao.js");
 
 exports.createTodo = async function(req, res) {
-    const {userIdx, content, type} = req.body;
+    const {userIdx} = req.verifiedToken;
+    const {content, type} = req.body;
 
     // validation
     if(!userIdx || !content || !type) {
@@ -48,7 +49,7 @@ exports.createTodo = async function(req, res) {
 };
 
 exports.readTodo = async function(req, res) {
-    const {userIdx} = req.params;
+    const {userIdx} = req.verifiedToken;
     const todos = {};
     const types = ["do", "decide", "delegate", "delete"];
 
@@ -73,8 +74,8 @@ exports.readTodo = async function(req, res) {
 };
 
 exports.updateTodo = async function(req, res) {
-
-    let {userIdx, todoIdx, content, status} = req.body;
+    const {userIdx} = req.verifiedToken;
+    let {todoIdx, content, status} = req.body;
 
     if(!userIdx || !todoIdx) {
         return res.send({
@@ -121,8 +122,8 @@ exports.updateTodo = async function(req, res) {
 };
 
 exports.deleteTodo = async function(req, res) {
-
-    let {userIdx, todoIdx} = req.params;
+    const {userIdx} = req.verifiedToken;
+    let {todoIdx} = req.params;
 
     if(!userIdx || !todoIdx) {
         return res.send({
