@@ -1,10 +1,12 @@
 const compression = require("compression");
 const cors = require("cors");
 const express = require("express");
+
 const app = express();
 const port = 3000;
 
 const { indexRouter } = require("./src/router/indexRouter");
+const { userRouter } = require("./src/router/userRouter");
 
 // app.get("/", (req, res) => {
 //     res.send("Hello World!");
@@ -33,6 +35,7 @@ app.use(compression());
 /* 라우터 분리 */
 // app이 express 객체가 된다
 indexRouter(app);
+userRouter(app);
 
 app.listen(port, () => {
     console.log(`Express app listening at port: ${port}`);

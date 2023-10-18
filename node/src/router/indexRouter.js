@@ -1,9 +1,28 @@
 const indexController = require("../controller/indexController");
+const { jwtMiddleware } = require("../../jwtMiddleware")
+
 
 exports.indexRouter = function(app) {
     // 일정 CRUD API
-    app.post("/todo", indexController.createTodo); // create
+    app.post("/todo", jwtMiddleware, indexController.createTodo); // create
     app.get("/user/:userIdx/todos", indexController.readTodo); // read
     app.patch("/todo", indexController.updateTodo) // update
     app.delete("/user/:userIdx/todo/:todoIdx", indexController.deleteTodo) // delete
+
+    app.get(
+        "/dummy",
+        function (req, res, next) {
+            console.log(1);
+            next();
+        },
+        function(req,res, next) {
+            console.log(2);
+            next(); // 다음 콜백 함수를 불러주는 역할이다.
+        },
+        function(req,res,next) {
+            console.log(3);
+            return;
+        }
+    );
+
 };

@@ -103,18 +103,22 @@ exports.updateTodo = async function(req, res) {
     }
 
     const updateTodoRow = await indexDao.updateTodo(userIdx, todoIdx, content, status);
-    const updatedTodoRow = await indexDao.selectValidTodo(userIdx, todoIdx);
 
-    console.log(updateTodoRow);
+    if(!updateTodoRow) {
+        return res.send({
+            isSuccess: false,
+            code: 400,
+            message: "삭제 실패. 관리자에게 문의해주세요.",
+        });
+    }
+
     return res.send({
-        result : updatedTodoRow,
         isSuccess: true,
         code: 200,
         message: "수정 성공",
     })
 
 };
-
 
 exports.deleteTodo = async function(req, res) {
 
