@@ -12,6 +12,10 @@ const { userRouter } = require("./src/router/userRouter");
 //     res.send("Hello World!");
 // });
 
+
+// 정적 파일 제공
+app.use(express.static("publ"));
+
 /* express 미들웨어 설정 */
 // body json 파싱
 app.use(express.json());
