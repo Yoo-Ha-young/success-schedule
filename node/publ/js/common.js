@@ -1,1 +1,1 @@
-const url = "https://www.dailyplan.shop/";
+const url = "https://www.dailyplan.shop";
