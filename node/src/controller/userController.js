@@ -120,3 +120,17 @@ exports.signin = async function(req, res) {
     })
 
 };
+
+exports.getNicknameByToken = async function(req,res) {
+    const {userIdx} = req.verifiedToken;
+    const [userInfo] = await userDao.selectNicknameByUserIdx(userIdx);
+    const nickname = userInfo.nickname;
+    
+    return res.send({
+        result: {nickname: nickname},
+        isSuccess : true,
+        code: 200,
+        message: "토큰 검증 성공"
+    })
+    
+};

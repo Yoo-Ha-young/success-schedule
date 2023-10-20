@@ -94,3 +94,35 @@ exports.selectUser = async function(email, password) {
         return false;
     }
 };
+
+
+exports.selectNicknameByUserIdx = async function(userIdx) {
+    try {
+        // pool 객체를 사용해 데이터 베이스에 접근, 접근이 잘되는지 테스트를 한다.
+        const connection = await pool.getConnection(async (conn) => conn);
+
+        // 접근이 잘되면 쿼리를 날리는 부분이다.
+        try {
+            // 쿼리
+            const selectNicknameByUserIdxQuery = "select * from users where userIdx = ?;"
+            const selectNicknameByUserIdxParams = [userIdx];
+            // 쿼리를 날리는 부분
+            const [row] = await connection.
+                query(selectNicknameByUserIdxQuery, selectNicknameByUserIdxParams);
+            
+            connection.release(); // 과부하가 걸릴지 않도록 커넥션을 끊어야한다.
+
+            return row;
+            
+        } catch (err) {
+            console.error(` #### selectNicknameByUserIdx Query error ####`);            
+            connection.release(); // 과부하가 걸릴지 않도록 커넥션을 끊어야한다.
+            return false;
+        } // } finally {
+        //     connection.release(); // 과부하가 걸릴지 않도록 커넥션을 끊어야한다.
+        // }
+    } catch (err) {
+        console.error(` #### selectNicknameByUserIdx DB error ####`);
+        return false;
+    }
+};

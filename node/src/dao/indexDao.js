@@ -71,7 +71,7 @@ exports.selectTodoByType = async function(userIdx, type){
         // 접근이 잘되면 쿼리를 날리는 부분이다.
         try {
             // 쿼리
-            const selectTodoQuery = "select todoIdx, content from todos where userIdx = ? and type = ? and not(status = 'D');";
+            const selectTodoQuery = "select todoIdx, content, status from todos where userIdx = ? and type = ? and not(status = 'D');";
 
             const selectTodoParams = [userIdx, type];
 
